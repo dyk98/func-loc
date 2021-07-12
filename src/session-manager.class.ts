@@ -89,7 +89,8 @@ export class SessionManager {
 
     const location = properties.internalProperties.find((prop) => prop.name === '[[FunctionLocation]]');
     const script = this.scripts[location.value.value.scriptId];
-    let source = script.url;
+    // 会出现非英文情况情况
+    let source = decodeURIComponent(script.url);
     const sourceMapUrl = script.sourceMapURL;
 
     // Normalize the source uri to ensure consistent result
